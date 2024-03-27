@@ -298,10 +298,11 @@
             hobbies : edit_hobbies,
             languages : edit_languages
     }
-    console.log("updateData",updateData)
+
     await updateDoc(doc(db,"resumes",id),updateData)
-    
-     location = "resume_list.html"
+            let data= localStorage.getItem("userData")
+          let prase_data=JSON.parse(data)
+        location = `resume_list.html?userId=${prase_data.id}`
    
     })
 

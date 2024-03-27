@@ -9,7 +9,10 @@
 </head>
 
     <body>
-        <h1>Resume Builder</h1>   
+        <div>
+            <h1>Resume Builder</h1>
+            <button type="button" id="logout"></button>
+        </div>   
         <div class="main">
            
            <form  id="register">
@@ -124,11 +127,11 @@
                <button type="button" class="btn" id="submit">submit</button> 
            </form>
             
-           <div class="code_preview">
+           <!-- <div class="code_preview">
                <pre id="code">
        
                </pre>
-           </div>
+           </div> -->
         </div>   
        </body>
 
@@ -164,20 +167,20 @@
             const docRef =await addDoc(collection(db, "resumes"), {...myresume,userId:prase_data.id})
 
             // location = 'resume_list.html'
-            location = `resume_list.html?resumeId=${id}`
+            location = `resume_list.html?userId=${id}`
         })
      
         
         // IF localstorage have no data back to login page
         if(!localStorage.getItem('userData')){
-            location = "login.html"
+            location = "index.html"
         }
 
-        // logout
-        // document.getElementById('logout').addEventListener('click',(e)=>{
-        //     localStorage.removeItem('userloginData')
-        //     location="login.html"
-        // })
+        //logout
+        logout.addEventListener('click',(e)=>{
+            localStorage.removeItem('userloginData')
+            location="index.html"
+        })
 
   </script>
 </html>

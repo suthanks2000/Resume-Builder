@@ -6,12 +6,16 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Resume</h1>
-
+    <div>
+        <h1>Resume Names</h1>
+        
+        <button id="create_resume">create Resume</button>
+    </div>
+   <div>
     <ul id="list">
         
     </ul>
-    
+   </div>
     <button type="button" id="logout" >Logout</button>
 </body>
 <script type="module">
@@ -56,7 +60,7 @@
 
 
     if(!localStorage.getItem('userData')){
-            location = "login.html"
+            location = "index.html"
     }
 
     // DELETE FUNCTION
@@ -77,10 +81,15 @@
 
     document.getElementById('logout').addEventListener('click',(e)=>{
         localStorage.removeItem('userData')
-        location = "login.html"
+        location = "index.html"
 
     })
 
+    create_resume.addEventListener('click',(e)=>{
+        let data= localStorage.getItem("userData")
+          let prase_data=JSON.parse(data)
+        location=`create_resume.html?userId=${prase_data.id}`
+    })
     
 
   </script>
