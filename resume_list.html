@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Resume</h1>
+
+    <ul id="list">
+        
+    </ul>
+    
+    <button type="button" id="logout" >Logout</button>
+</body>
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+    import { getFirestore,addDoc, collection,getDocs,doc,getDoc,query,where } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCgvV_ZTidnUDUcSEOKbOQpeocqHlvlOyM",
+      authDomain: "resume-builder-project-cb6ca.firebaseapp.com",
+      projectId: "resume-builder-project-cb6ca",
+      storageBucket: "resume-builder-project-cb6ca.appspot.com",
+      messagingSenderId: "726622035139",
+      appId: "1:726622035139:web:5b843b927e93be35885676"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    function getResume(){
+        let data= localStorage.getItem("userData")
+        let prase_data=JSON.parse(data)
+
+        getDocs(query(collection(db,'resumes'),where('userId','==',prase_data.id))).then(docSnap =>{
+        let renderHtml = ''
+        docSnap.forEach((each)=>{
+            let eachResume = each.data()
+        
+            renderHtml = renderHtml + `<li><a href="template.html?resumeId=${each.id}"> 
+        ${eachResume.name}</a><button type='button' onclick="test('${each.id}')">Delete</button>
+        <a href='edit_rsume.html?resumeId=${each.id}'><button>Edit</button></a></li>`
+        })
+        document.getElementById('list').innerHTML = renderHtml
+    })
+    }
+    getResume()
+
+
+    if(!localStorage.getItem('userData')){
+            location = "login.html"
+    }
+
+    // DELETE FUNCTION
+
+    // url la irrukura id
+    // const parms = new URLSearchParams(document.location.search)
+    // const id = parms.get('resumeId')
+
+    function deleteResume(resumeId){
+    deleteDoc(doc(db,"resumes",resumeId))
+    getResume()
+}
+    window.test = deleteResume
+
+    
+
+    // **********LOGOUT**************
+
+    document.getElementById('logout').addEventListener('click',(e)=>{
+        localStorage.removeItem('userData')
+        location = "login.html"
+
+    })
+
+    
+
+  </script>
+</html>

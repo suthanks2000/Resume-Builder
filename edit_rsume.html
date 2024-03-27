@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="edit_page.css"> -->
+    <!-- <script src="resume_task.js" type="text/javascript"></script> -->
+</head>
+<body>
+    <div>
+        <label style="display: block;">Name</label><input type="text" id="edit_name" />
+        <button type="button" id="update">update</button>
+    </div>
+    <div>
+        <label style="display: block;">contact</label><input type="text" id="edit_contact" />
+    </div>
+    <div>
+        <label style="display: block;">title</label><input type="text" id="edit_title" />
+    </div>
+    <div id="skills_edit">
+        <label>skills</label>
+        <div id="input_skills">
+            
+        </div>
+  
+    </div>
+    <button type="button"  onclick="side_add('input_skills')">addskills</button>
+
+    
+    <div id="input_hobbies">
+        <label>hobbies</label>
+        
+    </div>
+    <button type="button"  onclick="side_add('input_hobbies')">addhobbies</button>
+    <div id="input_languages">
+        <label>languages</label>
+        
+    </div>
+    <button type="button"  onclick="side_add('input_languages')">addlanguages</button>
+    <div class="personal_details">
+        <h2>personal details</h2>
+        <div class="input">
+            <label>father name</label>
+            <input type="text" id="edit_fathername" placeholder="enter your father's name"/>
+        </div>
+        <div class="input">
+            <label>mother name</label>
+            <input type="text" id="edit_mothername" placeholder="enter your mother's name" />
+        </div>
+        <div class="input">
+            <label>Email</label>
+            <input type="text" id="edit_email"  placeholder="enter your email"/>
+        </div>
+        <div class="input">
+            <label>age</label>
+            <input type="text" id="edit_age"  placeholder="enter your age" />
+        </div>
+        <div class="input">
+            <label>date of birth</label>
+            <input type="text" id="edit_dateofbirth"  placeholder="enter your date of birth" />
+        </div>
+        <div class="input">
+            <label>place</label>
+            <input type="text" id="edit_place"  placeholder="enter your place" />
+        </div>
+        <div class="education">
+            <h2>education</h2>
+            <table>
+                <thead>
+                    <th>course name</th>
+                    <th>ins name</th>
+                    <th>percentage</th>
+                    <th>year</th>
+                </thead>
+                <tbody id="education_table">
+                   
+                </tbody>
+            </table>
+            <button type="button"  onclick="side_add('education_table')">addeducation</button>
+        </div>
+
+        <div class="projects">
+
+            <h2>projects</h2>
+            <table>
+                <thead>
+                    <th>project name</th>
+                    <th>project details</th>    
+                </thead>
+                <tbody id="edit_projects">
+                    
+                </tbody>
+            </table>
+            <button type="button"  onclick="side_add('edit_projects')">addprojects</button>
+        </div>
+
+        <div class="experience">
+
+            <h2>experience</h2>
+            <table>
+                <thead>
+                    <th>companay name</th>
+                    <th>work_details</th>
+                    <th>role</th>
+                    <th>working year</th>
+                </thead>
+                <tbody id="edit_experience">
+                    
+                </tbody>
+            </table>
+            <button type="button"  onclick="side_add('edit_experience')">addexperience</button>
+        </div>
+    </div>
+</body>
+<script>
+    function side_add(id){
+        if(id == 'input_skills'){
+            let addSkill = document.getElementById('input_skills')
+            let addNewSkill = document.createElement('input');
+            addNewSkill.setAttribute('placeholder','Enter New Skill')
+            addNewSkill.setAttribute('class','data_skills')
+            addNewSkill.setAttribute('type','text')
+            addSkill.appendChild(addNewSkill)
+        }
+        else if(id == 'input_languages'){
+            
+            let addLanguage = document.getElementById('input_languages')
+            let addNewLanguage = document.createElement('input');
+            addNewLanguage.setAttribute('placeholder','Enter New Language')
+            addNewLanguage.setAttribute('class','data_languages')
+            addNewLanguage.setAttribute('type','text')
+            addLanguage.appendChild(addNewLanguage)
+        
+        }
+        else if (id == 'input_hobbies'){
+            let addHobby = document.getElementById('input_hobbies')
+            let addNewHobby = document.createElement('input');
+            addNewHobby.setAttribute('placeholder','Enter New hobby')
+            addNewHobby.setAttribute('class','data_hobbies')
+            addNewHobby.setAttribute('type','text')
+            addHobby.appendChild(addNewHobby)
+
+        }
+    }
+</script>
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+    import { getFirestore,addDoc, collection,getDocs,doc,getDoc,updateDoc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCgvV_ZTidnUDUcSEOKbOQpeocqHlvlOyM",
+      authDomain: "resume-builder-project-cb6ca.firebaseapp.com",
+      projectId: "resume-builder-project-cb6ca",
+      storageBucket: "resume-builder-project-cb6ca.appspot.com",
+      messagingSenderId: "726622035139",
+      appId: "1:726622035139:web:5b843b927e93be35885676"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    let params = new URLSearchParams(document.location.search);
+    let id = params.get("resumeId")
+
+    getDocs(collection(db,"resumes")).then(editpage=>{
+        editpage.forEach((each)=>{
+            if(id==each.id){
+                let datas = each.data()
+
+                document.getElementById("edit_name").value=datas.name
+                document.getElementById("edit_contact").value=datas.contact
+                document.getElementById("edit_title").value=datas.title
+
+                document.getElementById('edit_dateofbirth').value=datas.personal_details.date_of_birth
+
+                document.getElementById('edit_age').value=datas.personal_details.age
+                document.getElementById('edit_email').value=datas.personal_details.email
+                // document.getElementById('editDeclaration').value=datas.Declaration
+                document.getElementById('edit_fathername').value=datas.personal_details.father_name
+                document.getElementById('edit_mothername').value=datas.personal_details.mother_name
+                document.getElementById('edit_place').value=datas.personal_details.place
+
+            // to get skill
+
+                let empty_skills=""//skills add on the edit page using dinamic method
+                for (const each_skills of datas.skills) {
+                    empty_skills=empty_skills+`<input type="text" value="${each_skills}" class="data_skills">`
+                }
+                document.getElementById("input_skills").innerHTML=empty_skills
+
+                let empty_hobbies=""//HOBBIES add on the edit page using dinamic method
+                for (const each_hobbies of datas.hobbies) {
+                    empty_hobbies=empty_hobbies+`hobbies:<input type="text" value="${each_hobbies}" class="data_hobbies">`
+                }
+                document.getElementById("input_hobbies").innerHTML=empty_hobbies
+
+                let empty_languages=""//LANGUAGES add on the edit page using dinamic method
+                for (const each_languages of datas.languages) {
+                    empty_languages=empty_languages+`languages:<input type="text" value="${each_languages}" class="data_languages">`
+                }
+                document.getElementById("input_languages").innerHTML=empty_languages
+
+
+                let prase_education=datas.education
+                let empty_education=""//education add on the edit page using dinamic method
+                for (const each in prase_education) {
+                    empty_education=empty_education+`<tr>
+                    <td><input type="text" onkeyup="multi_edit_resume(this,${each},'course_name','education')" value="${prase_education[each].course_name}"></td>
+                    <td><input type="text" onkeyup="multi_edit_resume(this,${each},'ins_name','education')" value="${prase_education[each].ins_name}"></td>
+                    <td><input type="number" onkeyup="multi_edit_resume(this,${each},'percentage','education')" value="${prase_education[each].percentage}"></td>
+                    <td><input type="number" onkeyup="multi_edit_resume(this,${each},'year','education')" value="${prase_education[each].year}"></td>
+                </tr>`
+                }
+                document.getElementById("education_table").innerHTML=empty_education
+
+                let prase_projects=datas.projects
+                let empty_projects=""//education add on the edit page using dinamic method
+                for (const each in prase_projects) {
+                    empty_projects=empty_projects+`<tr>
+                    <td><input type="text" onkeyup="multi_edit_resume(this,${each},'project_name','projects')" value="${prase_projects[each].project_name}"></td>
+                    <td><input type="text" onkeyup="multi_edit_resume(this,${each},'project_details','projects')" value="${prase_projects[each].project_details}"></td>
+                </tr>`
+                }
+                document.getElementById("edit_projects").innerHTML=empty_projects
+
+                let prase_experience=datas.experience
+                let empty_experience=""//education add on the edit page using dinamic method
+                for (const each in prase_experience) {
+                    empty_experience=empty_experience+`<tr>
+                    <td><input type="text" onkeyup="multi_edit_resume(this,${each},'companay_name','experience')" value="${prase_experience[each].companay_name}"></td>
+                    <td><input type="text" onkeyup="multi_edit_resume(this,${each},'work_details','experience')" value="${prase_experience[each].work_details}"></td>
+                    <td><input type="text" onkeyup="multi_edit_resume(this,${each},'role','experience')" value="${prase_experience[each].role}"></td>
+                    <td><input type="number" onkeyup="multi_edit_resume(this,${each},'working_year','experience')" value="${prase_experience[each].working_year}"></td>
+                </tr>`
+                }
+                document.getElementById("edit_experience").innerHTML=empty_experience
+
+            }
+        })
+    })
+
+    update.addEventListener('click', async(e)=>{
+        let update_input_name= document.getElementById("edit_name").value;
+        let update_input_contact= document.getElementById("edit_contact").value;
+        let update_input_title= document.getElementById("edit_title").value;
+
+        let update_input_fatername= document.getElementById("edit_fathername").value;
+        let update_input_mothername= document.getElementById("edit_mothername").value;
+        let update_input_dateofbirth= document.getElementById("edit_dateofbirth").value;
+        let update_input_email= document.getElementById("edit_email").value;
+        let update_input_place= document.getElementById("edit_place").value;
+        let update_input_age= document.getElementById("edit_age").value;
+
+
+
+
+    let update_skills=document.getElementsByClassName("data_skills");// skillls add dynamic method 
+    let update_hobbies=document.getElementsByClassName("data_hobbies");//hobbies add on dynamic method
+    let update_languages=document.getElementsByClassName("data_languages");//languages add on dynamic method
+
+    let edit_skills=[]
+    let edit_hobbies=[]
+    let edit_languages=[]
+
+    for (const each of update_skills) {//skills 
+        edit_skills.push(each.value)
+    }
+    
+    for (const each of update_hobbies) {// hobbies
+        edit_hobbies.push(each.value)
+    }
+
+    for (const each of update_languages) {
+        edit_languages.push(each.value)
+    }
+    let updateData = {
+            name : update_input_name,
+            title: update_input_title,
+            
+            contact : update_input_contact,
+            personal_details:{
+                fathername : update_input_fatername,
+                mothername : update_input_mothername,
+                age : update_input_age,
+                email :update_input_email,
+                place:update_input_place,
+                date_of_birth:update_input_dateofbirth
+
+            },
+            skills : edit_skills,
+            hobbies : edit_hobbies,
+            languages : edit_languages
+    }
+    console.log("updateData",updateData)
+    await updateDoc(doc(db,"resumes",id),updateData)
+    
+     location = "resume_list.html"
+   
+    })
+
+</script>
+</html>

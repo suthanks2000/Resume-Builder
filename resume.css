@@ -1,0 +1,75 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color:black;
+}
+
+
+.main{
+    display: flex; 
+    justify-content: space-between; 
+}
+#register{
+    background-color: blueviolet;
+    border-radius: 10px;
+}
+h1{
+    text-align: center;
+    font-weight: bold;
+    background-color: black;
+    color: #ffff;
+}
+label{
+    font-weight: bold;
+}
+input{
+    padding: 5px;
+    border-radius: 5px;
+    border: 2px solid blueviolet;
+
+}
+.input{
+    padding: 10px;
+    margin-left: 10px;
+    
+}
+.edu{
+    margin-left: 10px;
+}
+.code_preview{
+    border-radius: 10px;
+    padding: 10px;
+    font-weight: lighter;
+    background-color: rgb(255, 153, 0);
+}
+.btn{
+    margin: 60px auto;
+    height: 30px;
+}
+.project{
+    margin-bottom: 20px;
+}
+.project input{
+    margin-bottom: 10px;
+}
+.project label{
+    display: block;
+    margin: 10px;
+}
+.edu{
+    margin-bottom: 20px;
+
+}
+.edu input{
+    margin-bottom: 10px;
+
+}
+.edu label{
+    display: block;
+    margin: 10px;
+}
+.declaration{
+    display: block;
+}
