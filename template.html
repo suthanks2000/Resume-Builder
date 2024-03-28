@@ -30,12 +30,12 @@
     }
     }
     if(!localStorage.getItem('userData')){
-            location = "login.html"
+            location = "index.html"
         }
     
-        document.getElementById('logout').addEventListener('click',(e)=>{
+    document.getElementById('logout').addEventListener('click',(e)=>{
             localStorage.removeItem('userData')
-            location="login.html"
+            location="index.html"
         })
 </script>
 </html>
