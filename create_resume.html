@@ -6,12 +6,12 @@
     <title>Document</title>
     <script src="resume_task.js" type="text/javascript"></script>
     <link rel="stylesheet" href="resume.css">
+    
 </head>
-
-    <body>
+<body>
         <div>
             <h1>Resume Builder</h1>
-            <button type="button" id="logout"></button>
+            <button type="button" onclick="logout()">logout</button>
         </div>   
         <div class="main">
            
@@ -124,63 +124,22 @@
                    <label>declaration</label>
                    <input type="text" placeholder="enter your declaration" onkeyup="get(this,'declaration')"/>
                </div>
-               <button type="button" class="btn" id="submit">submit</button> 
+               <button type="button" class="btn" onclick="submit_function()">submit</button> 
            </form>
             
-           <!-- <div class="code_preview">
+           <div class="code_preview">
                <pre id="code">
        
                </pre>
-           </div> -->
+           </div>
         </div>   
-       </body>
-
-<script type="module">
-    // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-    import { getFirestore,addDoc, collection,getDocs,doc,getDoc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
-
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
-  
-    // Your web app's Firebase configuration
-    const firebaseConfig = {
-      apiKey: "AIzaSyCgvV_ZTidnUDUcSEOKbOQpeocqHlvlOyM",
-      authDomain: "resume-builder-project-cb6ca.firebaseapp.com",
-      projectId: "resume-builder-project-cb6ca",
-      storageBucket: "resume-builder-project-cb6ca.appspot.com",
-      messagingSenderId: "726622035139",
-      appId: "1:726622035139:web:5b843b927e93be35885676"
-    };
-  
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
-    const parms = new URLSearchParams(document.location.search);
-        const id = parms.get('userId') 
-
-
-        document.getElementById('submit').addEventListener('click', async (e)=>{
-          let data= localStorage.getItem("userData")
-          let prase_data=JSON.parse(data)
-            const docRef =await addDoc(collection(db, "resumes"), {...myresume,userId:prase_data.id})
-
-            // location = 'resume_list.html'
-            location = `resume_list.html?userId=${id}`
-        })
-     
-        
-        // IF localstorage have no data back to login page
+</body>
+       <script src="main_module.js" type="module"></script>
+       <script>
         if(!localStorage.getItem('userData')){
-            location = "index.html"
+                location = "index.html"
         }
+    </script>
 
-        //logout
-        logout.addEventListener('click',(e)=>{
-            localStorage.removeItem('userloginData')
-            location="index.html"
-        })
 
-  </script>
 </html>

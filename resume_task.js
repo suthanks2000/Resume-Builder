@@ -192,126 +192,127 @@ function edit_resume(){// edit function using a localstorage
   document.getElementById("edit_experience").innerHTML=empty_experience
  
 }
-function side_add(id){
+// function side_add(id){
     
-        let parms = new URLSearchParams(document.location.search);
-        let index = parms.get("name");
+//         let parms = new URLSearchParams(document.location.search);
+//         let index = parms.get("name");
 
-        let edit_data = localStorage.getItem("resume_details");
-        let edit_prase_data = JSON.parse(edit_data);
+//         let edit_data = localStorage.getItem("resume_details");
+//         let edit_prase_data = JSON.parse(edit_data);
     
-        if(id=="input_skills"){
-            // Create a new input element skills
-        let create_add = document.createElement("input");
-        create_add.setAttribute('type', 'text');
-        create_add.setAttribute('class', 'data_skills'); // Add a class for easier selection
-        create_add.setAttribute('placeholder', 'enter the skills'); 
-         // Append the input element to the specified container
-        document.getElementById("input_skills").appendChild(create_add);
-         // Update the skills array in the local storage with the current input value
-        edit_prase_data[index].skills.push(create_add.value);
-        }
-        else if(id=="input_hobbies"){
-            // Create a new input element hobbies
-        let create_add = document.createElement("input");
-        create_add.setAttribute('type', 'text');
-        create_add.setAttribute('class', 'data_hobbies'); // Add a class for easier selection 
+//         if(id=="input_skills"){
+//             // Create a new input element skills
+//         let create_add = document.createElement("input");
+//         create_add.setAttribute('type', 'text');
+//         create_add.setAttribute('class', 'data_skills'); // Add a class for easier selection
+//         create_add.setAttribute('placeholder', 'enter the skills'); 
+//          // Append the input element to the specified container
+//         document.getElementById("input_skills").appendChild(create_add);
+//          // Update the skills array in the local storage with the current input value
+//         edit_prase_data[index].skills.push(create_add.value);
+//         }
+//         else if(id=="input_hobbies"){
+//             // Create a new input element hobbies
+//         let create_add = document.createElement("input");
+//         create_add.setAttribute('type', 'text');
+//         create_add.setAttribute('class', 'data_hobbies'); // Add a class for easier selection 
 
-        // Append the input element to the specified container
-        document.getElementById("input_hobbies").appendChild(create_add);
+//         // Append the input element to the specified container
+//         document.getElementById("input_hobbies").appendChild(create_add);
 
-        // Update the hobbies array in the local storage with the current input value
-        edit_prase_data[index].hobbies.push(create_add.value);
-        }
+//         // Update the hobbies array in the local storage with the current input value
+//         edit_prase_data[index].hobbies.push(create_add.value);
+//         }
 
-        else if(id=="input_languages"){
-        // Create a new input element languages
-        let create_add = document.createElement("input");
-        create_add.setAttribute('type', 'text');
-        create_add.setAttribute('class', 'data_languages'); // Add a class for easier selection 
+//         else if(id=="input_languages"){
+//         // Create a new input element languages
+//         let create_add = document.createElement("input");
+//         create_add.setAttribute('type', 'text');
+//         create_add.setAttribute('class', 'data_languages'); // Add a class for easier selection 
 
-        // Append the input element to the specified container
-        document.getElementById("input_languages").appendChild(create_add);
+//         // Append the input element to the specified container
+//         document.getElementById("input_languages").appendChild(create_add);
 
-        // Update the languages array in the local storage with the current input value
-        edit_prase_data[index].languages.push(create_add.value);
-        }
+//         // Update the languages array in the local storage with the current input value
+//         edit_prase_data[index].languages.push(create_add.value);
+//         }
 
-        else if(id=="education_table"){
-            let education_length=edit_prase_data[index].education.length
-            let t_body_id=document.getElementById("education_table").innerHTML
-            let add_education=`<tr>
-            <td><input type="text" placeholder="enter the course name" onkeyup="multi_edit_resume(this,${education_length},'course_name','education')"></td>
-            <td><input type="text" placeholder="enter the ins name"  onkeyup="multi_edit_resume(this,${education_length},'ins_name','education')" ></td>
-            <td><input type="number" placeholder="enter the percentage"  onkeyup="multi_edit_resume(this,${education_length},'percentage','education')"></td>
-            <td><input type="number" placeholder="enter the course year"  onkeyup="multi_edit_resume(this,${education_length},'year','education')" ></td>
-        </tr>`
-        document.getElementById("education_table").innerHTML=t_body_id+add_education
+//         else if(id=="education_table"){
+//             let education_length=edit_prase_data[index].education.length
+//             let t_body_id=document.getElementById("education_table").innerHTML
+//             let add_education=`<tr>
+//             <td><input type="text" placeholder="enter the course name" onkeyup="multi_edit_resume(this,${education_length},'course_name','education')"></td>
+//             <td><input type="text" placeholder="enter the ins name"  onkeyup="multi_edit_resume(this,${education_length},'ins_name','education')" ></td>
+//             <td><input type="number" placeholder="enter the percentage"  onkeyup="multi_edit_resume(this,${education_length},'percentage','education')"></td>
+//             <td><input type="number" placeholder="enter the course year"  onkeyup="multi_edit_resume(this,${education_length},'year','education')" ></td>
+//         </tr>`
+//         document.getElementById("education_table").innerHTML=t_body_id+add_education
 
-        edit_prase_data[index].education[education_length]={
-            course_name:"",
-            ins_name:"",
-            percentage:"",
-            year:""
-        }
-        }
+//         edit_prase_data[index].education[education_length]={
+//             course_name:"",
+//             ins_name:"",
+//             percentage:"",
+//             year:""
+//         }
+//         }
 
-        else if(id=="edit_projects"){
-            let projects_length=edit_prase_data[index].projects.length
-            let t_body_id=document.getElementById("edit_projects").innerHTML
-            let add_projects=`<tr>
-            <td><input type="text" placeholder="enter the project name" onkeyup="multi_edit_resume(this,${projects_length},'project_name','projects')" ></td>
-            <td><input type="text" placeholder="enter the project details" onkeyup="multi_edit_resume(this,${projects_length},'project_details','projects')" ></td>
-        </tr>`
+//         else if(id=="edit_projects"){
+//             let projects_length=edit_prase_data[index].projects.length
+//             let t_body_id=document.getElementById("edit_projects").innerHTML
+//             let add_projects=`<tr>
+//             <td><input type="text" placeholder="enter the project name" onkeyup="multi_edit_resume(this,${projects_length},'project_name','projects')" ></td>
+//             <td><input type="text" placeholder="enter the project details" onkeyup="multi_edit_resume(this,${projects_length},'project_details','projects')" ></td>
+//         </tr>`
 
-        document.getElementById("edit_projects").innerHTML=t_body_id+add_projects
+//         document.getElementById("edit_projects").innerHTML=t_body_id+add_projects
 
-        edit_prase_data[index].projects[projects_length]={
-            project_name:"",
-            project_details:""
-        }
-        }
+//         edit_prase_data[index].projects[projects_length]={
+//             project_name:"",
+//             project_details:""
+//         }
+//         }
 
-        else if(id="edit_experience"){
-            let experience_length=edit_prase_data[index].experience.length
-            let t_body_id=document.getElementById("edit_experience").innerHTML
-            let add_experience=`<tr>
-            <td><input type="text" onkeyup="multi_edit_resume(this,${experience_length},'companay_name','experience')"></td>
-            <td><input type="text" onkeyup="multi_edit_resume(this,${experience_length},'work_details','experience')"></td>
-            <td><input type="text" onkeyup="multi_edit_resume(this,${experience_length},'role','experience')"></td>
-            <td><input type="number" onkeyup="multi_edit_resume(this,${experience_length},'working_year','experience')"></td>
-        </tr>`
+//         else if(id="edit_experience"){
+//             let experience_length=edit_prase_data[index].experience.length
+//             let t_body_id=document.getElementById("edit_experience").innerHTML
+//             let add_experience=`<tr>
+//             <td><input type="text" onkeyup="multi_edit_resume(this,${experience_length},'companay_name','experience')"></td>
+//             <td><input type="text" onkeyup="multi_edit_resume(this,${experience_length},'work_details','experience')"></td>
+//             <td><input type="text" onkeyup="multi_edit_resume(this,${experience_length},'role','experience')"></td>
+//             <td><input type="number" onkeyup="multi_edit_resume(this,${experience_length},'working_year','experience')"></td>
+//         </tr>`
 
-        document.getElementById("edit_experience").innerHTML=t_body_id+add_experience
+//         document.getElementById("edit_experience").innerHTML=t_body_id+add_experience
 
-        edit_prase_data[index].experience[experience_length]={
-            companay_name:"",
-            work_details:"",
-            role:"",
-            working_year:""
-        }
-        }
-        localStorage.setItem("resume_details", JSON.stringify(edit_prase_data));
+//         edit_prase_data[index].experience[experience_length]={
+//             companay_name:"",
+//             work_details:"",
+//             role:"",
+//             working_year:""
+//         }
+//         }
+//         localStorage.setItem("resume_details", JSON.stringify(edit_prase_data));
 
-}
+// }
 
 
 
 
 function multi_edit_resume(element,data_index,key_word,praent_key){// education,project details,experiance update function
-    let parms = new URLSearchParams(document.location.search);
-    let index = parms.get("name");
+    // let parms = new URLSearchParams(document.location.search);
+    // let index = parms.get("name");
 
-    let edit_data = localStorage.getItem("resume_details")
-    let edit_prase_data = JSON.parse(edit_data)
+    // let edit_data = localStorage.getItem("resume_details")
+    // let edit_prase_data = JSON.parse(edit_data)
 
     
-        edit_prase_data[index][praent_key][data_index][key_word]=element.value;
+        myresume[praent_key][data_index][key_word]=element.value;
+        // myresume is golbal empty object 
     
     
     
     
-    localStorage.setItem("resume_details",JSON.stringify(edit_prase_data))
+    // localStorage.setItem("resume_details",JSON.stringify(edit_prase_data))
 
 }
 

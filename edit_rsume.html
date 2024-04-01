@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- <link rel="stylesheet" href="edit_page.css"> -->
-    <!-- <script src="resume_task.js" type="text/javascript"></script> -->
+    <script src="resume_task.js" type="text/javascript"></script>
 </head>
 <body>
     <div>
         <label style="display: block;">Name</label><input type="text" id="edit_name" />
-        <button type="button" id="update">update</button>
+        <button type="button" onclick="update_data()">update</button>
     </div>
     <div>
         <label style="display: block;">contact</label><input type="text" id="edit_contact" />
@@ -113,6 +113,8 @@
         </div>
     </div>
 </body>
+<script src="main_module.js" type="module"></script>
+
 <script>
     function side_add(id){
         if(id == 'input_skills'){
@@ -145,6 +147,9 @@
     }
 </script>
 <script type="module">
+    edit_resume()
+</script>
+<!-- <script type="module">
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
     import { getFirestore,addDoc, collection,getDocs,doc,getDoc,updateDoc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
@@ -306,5 +311,5 @@
    
     })
 
-</script>
+</script> -->
 </html>
