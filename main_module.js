@@ -13,7 +13,7 @@
       storageBucket: "resume-builder-project-cb6ca.appspot.com",
       messagingSenderId: "726622035139",
       appId: "1:726622035139:web:5b843b927e93be35885676"
-    };
+    };[]
   
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
@@ -137,21 +137,11 @@ function create_resume(){
 window.create_resume=create_resume // cr this function all pages use in consider by universel 
 
 // ******************************************edit page  function***************************************
-async function edit_resume(){
+ function edit_resume(){
     let params = new URLSearchParams(document.location.search);
     let id = params.get("resumeId")
 
-//  getDocs(query(collection(db,"resumes"),where("resumes","==",id))).then(snapshot =>{
-//     snapshot.forEach(each=>{
-//         console.log(each.data());
-//         let datas = each.data()
-//                  myresume=datas
-//             document.getElementById("edit_name").value=datas.name
-//     })
-       
 
-    
-//  })
  
 
     getDocs(collection(db,"resumes")).then(editpage=>{

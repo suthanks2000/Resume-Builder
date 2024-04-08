@@ -115,37 +115,7 @@
 </body>
 <script src="main_module.js" type="module"></script>
 
-<script>
-    function side_add(id){
-        if(id == 'input_skills'){
-            let addSkill = document.getElementById('input_skills')
-            let addNewSkill = document.createElement('input');
-            addNewSkill.setAttribute('placeholder','Enter New Skill')
-            addNewSkill.setAttribute('class','data_skills')
-            addNewSkill.setAttribute('type','text')
-            addSkill.appendChild(addNewSkill)
-        }
-        else if(id == 'input_languages'){
-            
-            let addLanguage = document.getElementById('input_languages')
-            let addNewLanguage = document.createElement('input');
-            addNewLanguage.setAttribute('placeholder','Enter New Language')
-            addNewLanguage.setAttribute('class','data_languages')
-            addNewLanguage.setAttribute('type','text')
-            addLanguage.appendChild(addNewLanguage)
-        
-        }
-        else if (id == 'input_hobbies'){
-            let addHobby = document.getElementById('input_hobbies')
-            let addNewHobby = document.createElement('input');
-            addNewHobby.setAttribute('placeholder','Enter New hobby')
-            addNewHobby.setAttribute('class','data_hobbies')
-            addNewHobby.setAttribute('type','text')
-            addHobby.appendChild(addNewHobby)
 
-        }
-    }
-</script>
 <script type="module">
     edit_resume()
 </script>

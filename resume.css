@@ -1,4 +1,20 @@
-*{
+body{
+    overflow-x:hidden ;
+}
+.head{
+    box-shadow:0 0 8px 0 black;
+    
+}
+.header{
+    color: antiquewhite;
+}
+.input{
+    margin: 0 auto;
+    width: 80%;
+}
+/*
+
+{
     margin: 0;
     padding: 0;
 }
@@ -72,4 +88,4 @@ input{
 }
 .declaration{
     display: block;
-}
+} */
